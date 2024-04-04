@@ -2,6 +2,7 @@ package br.com.api.model;
 
 import br.com.api.dtos.medico.DadosAtualizacaoMedico;
 import br.com.api.dtos.consulta.DadosPostConsulta;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -21,17 +22,19 @@ public class Consulta {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "medico_id")
-    private Long medico_id;
-
     private Date data_consulta;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "medico_id")
+    @JsonIgnore
+    private Medico medico;
 
     private Boolean ativo;
 
-    public Consulta(DadosPostConsulta dados) {
+    public Consulta(Date data_consulta, Medico medico) {
         this.ativo = true;
-        this.medico_id = dados.medico_id();
-        this.data_consulta = dados.data_consulta();
+        this.data_consulta = data_consulta;
+        this.medico = medico;
     }
 
     public void atualizarInfos(DadosAtualizacaoMedico dados) {

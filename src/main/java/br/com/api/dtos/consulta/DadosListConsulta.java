@@ -5,8 +5,8 @@ import br.com.api.model.Medico;
 
 import java.util.Date;
 
-public record DadosListConsulta(Long medico_id, Date data_consulta) {
+public record DadosListConsulta(Medico medico, Date data_consulta) {
     public DadosListConsulta(Consulta consulta){
-        this(consulta.getMedico_id(), consulta.getData_consulta());
+        this(consulta.getMedico() , consulta.getData_consulta());
     }
 }

@@ -2,6 +2,10 @@ package br.com.api.dtos.consulta;
 
 import br.com.api.dtos.endereco.DadosEndereco;
 import br.com.api.dtos.medico.DadosPostRelacaoMedico;
+import br.com.api.model.Consulta;
+import br.com.api.model.Medico;
+import br.com.api.repository.ConsultaRepository;
+import br.com.api.repository.MedicoRepository;
 import br.com.api.validations.MedicoExists;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
@@ -14,4 +18,8 @@ public record DadosPostConsulta(
         Long medico_id,
         Date data_consulta
        ) {
+    public Consulta converter(MedicoRepository medicoRepository ) {
+        Medico medico = medicoRepository.findByid(medico_id);
+        return new Consulta(data_consulta, medico);
+    }
 }
