@@ -1,8 +1,6 @@
 package br.com.api.model;
 
 import br.com.api.dtos.medico.DadosAtualizacaoMedico;
-import br.com.api.dtos.consulta.DadosPostConsulta;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
