@@ -1,11 +1,13 @@
 package br.com.api.model;
 
-import br.com.api.dtos.medico.DadosAtualizacaoMedico;
+import br.com.api.dtos.consulta.DtoAtualizacaoConsulta;
+import br.com.api.repository.MedicoRepository;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
 
@@ -32,15 +34,6 @@ public class Consulta {
         this.ativo = true;
         this.data_consulta = data_consulta;
         this.medico = medico;
-    }
-
-    public void atualizarInfos(DadosAtualizacaoMedico dados) {
-//        if(dados.telefone() != null) {
-//            this.telefone = dados.telefone();
-//        }
-//        if(dados.endereco() != null) {
-//            this.endereco.atualizarInfos(dados.endereco());
-//        }
     }
 
     public void excluir() {

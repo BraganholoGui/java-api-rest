@@ -1,9 +1,8 @@
 package br.com.api.controller;
 
-import br.com.api.dtos.medico.DadosAtualizacaoMedico;
-import br.com.api.dtos.medico.DadosCadastroMedico;
-import br.com.api.dtos.medico.DadosListagemMedico;
-import br.com.api.model.Medico;
+import br.com.api.dtos.medico.DtoAtualizacaoMedico;
+import br.com.api.dtos.medico.DtoCadastroMedico;
+import br.com.api.dtos.medico.DtoListagemMedico;
 import br.com.api.repository.MedicoRepository;
 import br.com.api.service.MedicoService;
 import jakarta.validation.Valid;
@@ -25,17 +24,17 @@ public class MedicoController {
     private MedicoService service;
 
     @PostMapping
-    public void cadastrar(@RequestBody @Valid DadosCadastroMedico dados) {
+    public void cadastrar(@RequestBody @Valid DtoCadastroMedico dados) {
         service.cadastrar(dados);
     }
 
     @GetMapping
-    public Page<DadosListagemMedico> listar(@PageableDefault(size=10, sort={"nome"}) Pageable paginacao){
-        return repository.findAllByAtivoTrue(paginacao).map(DadosListagemMedico::new);
+    public Page<DtoListagemMedico> listar(@PageableDefault(size=10, sort={"nome"}) Pageable paginacao){
+        return repository.findAllByAtivoTrue(paginacao).map(DtoListagemMedico::new);
     }
 
     @PutMapping
-    public void atualizar(@RequestBody @Valid DadosAtualizacaoMedico dados) {
+    public void atualizar(@RequestBody @Valid DtoAtualizacaoMedico dados) {
         service.atualizar(dados);
 
     }

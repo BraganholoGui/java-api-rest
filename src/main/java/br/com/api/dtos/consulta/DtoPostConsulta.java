@@ -9,7 +9,7 @@ import jakarta.validation.constraints.NotNull;
 
 import java.util.Date;
 
-public record DadosPostConsulta(
+public record DtoPostConsulta(
         @NotNull @Valid @MedicoExists
         Long medico_id,
         Date data_consulta

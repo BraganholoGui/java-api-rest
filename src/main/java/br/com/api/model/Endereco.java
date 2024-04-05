@@ -1,6 +1,6 @@
 package br.com.api.model;
 
-import br.com.api.dtos.endereco.DadosEndereco;
+import br.com.api.dtos.endereco.DtoEndereco;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,7 +20,7 @@ public class Endereco {
     private String cidade;
     private String uf;
 
-    public Endereco(DadosEndereco dados) {
+    public Endereco(DtoEndereco dados) {
         this.logradouro = dados.logradouro();
         this.bairro = dados.bairro();
         this.cep = dados.cep();
@@ -30,7 +30,7 @@ public class Endereco {
         this.complemento = dados.complemento();
     }
 
-    public void atualizarInfos(DadosEndereco dados){
+    public void atualizarInfos(DtoEndereco dados){
         if(dados.logradouro() != null){
             this.logradouro = dados.logradouro();
         }

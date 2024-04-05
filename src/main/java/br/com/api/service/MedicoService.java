@@ -1,7 +1,7 @@
 package br.com.api.service;
 
-import br.com.api.dtos.medico.DadosAtualizacaoMedico;
-import br.com.api.dtos.medico.DadosCadastroMedico;
+import br.com.api.dtos.medico.DtoAtualizacaoMedico;
+import br.com.api.dtos.medico.DtoCadastroMedico;
 import br.com.api.model.Medico;
 import br.com.api.repository.MedicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +16,13 @@ public class MedicoService {
 
     @Transactional
 
-    public void cadastrar(DadosCadastroMedico dados) {
+    public void cadastrar(DtoCadastroMedico dados) {
         repository.save(new Medico(dados));
 
     }
     @Transactional
 
-    public void atualizar(DadosAtualizacaoMedico dados) {
+    public void atualizar(DtoAtualizacaoMedico dados) {
         var medico = repository.getReferenceById(dados.id());
         medico.atualizarInfos(dados);
     }

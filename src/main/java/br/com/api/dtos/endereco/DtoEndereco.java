@@ -3,7 +3,7 @@ package br.com.api.dtos.endereco;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
-public record DadosEndereco(
+public record DtoEndereco(
         @NotBlank
         String logradouro,
         @NotBlank

@@ -1,14 +1,13 @@
 package br.com.api.model;
 
-import br.com.api.dtos.medico.DadosAtualizacaoMedico;
-import br.com.api.dtos.medico.DadosCadastroMedico;
+import br.com.api.dtos.medico.DtoAtualizacaoMedico;
+import br.com.api.dtos.medico.DtoCadastroMedico;
 import br.com.api.enums.Especialidade;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import br.com.api.model.Endereco;
 
 @Table(name = "medicos")
 @Entity(name = "Medico")
@@ -35,7 +34,7 @@ public class Medico {
 
     private Boolean ativo;
 
-    public Medico(DadosCadastroMedico dados) {
+    public Medico(DtoCadastroMedico dados) {
         this.ativo = true;
         this.nome = dados.nome();
         this.email = dados.email();
@@ -45,7 +44,7 @@ public class Medico {
         this.endereco = new Endereco(dados.endereco());
     }
 
-    public void atualizarInfos(DadosAtualizacaoMedico dados) {
+    public void atualizarInfos(DtoAtualizacaoMedico dados) {
         if(dados.nome() != null) {
             this.nome = dados.nome();
         }
