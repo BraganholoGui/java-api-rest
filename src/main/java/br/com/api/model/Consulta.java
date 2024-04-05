@@ -24,9 +24,8 @@ public class Consulta {
 
     private Date data_consulta;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "medico_id")
-    @JsonIgnore
     private Medico medico;
 
     private Boolean ativo;
