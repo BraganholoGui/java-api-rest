@@ -23,14 +23,11 @@ public class ConsultaController {
     private ConsultaRepository repository;
 
     @Autowired
-    private MedicoRepository medicoRepository;
-
-    @Autowired
     private ConsultasService servico;
 
     @GetMapping
     public Page<DadosListConsulta> listConsultas(@PageableDefault(size=10) Pageable paginacao){
-        return repository.findAll(paginacao).map(DadosListConsulta::new);
+        return repository.findAllByAtivoTrue(paginacao).map(DadosListConsulta::new);
     }
 
     @GetMapping("/lista")
@@ -39,7 +36,6 @@ public class ConsultaController {
     }
 
     @PostMapping
-    @Transactional
     public void cadastrar(@RequestBody DadosPostConsulta dados) {
         servico.cadastrarConsulta(dados);
     }

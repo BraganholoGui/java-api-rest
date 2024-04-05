@@ -5,6 +5,7 @@ import br.com.api.dtos.medico.DadosCadastroMedico;
 import br.com.api.dtos.medico.DadosListagemMedico;
 import br.com.api.model.Medico;
 import br.com.api.repository.MedicoRepository;
+import br.com.api.service.MedicoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,11 +21,12 @@ public class MedicoController {
     @Autowired
     private MedicoRepository repository;
 
+    @Autowired
+    private MedicoService service;
+
     @PostMapping
-    @Transactional
     public void cadastrar(@RequestBody @Valid DadosCadastroMedico dados) {
-        System.out.println(dados);
-        repository.save(new Medico(dados));
+        service.cadastrar(dados);
     }
 
     @GetMapping
@@ -33,17 +35,15 @@ public class MedicoController {
     }
 
     @PutMapping
-    @Transactional
     public void atualizar(@RequestBody @Valid DadosAtualizacaoMedico dados) {
-        var medico = repository.getReferenceById(dados.id());
-        medico.atualizarInfos(dados);
+        service.atualizar(dados);
+
     }
 
     @DeleteMapping("/{id}")
     @Transactional
     public void excluir(@PathVariable Long id){
-        //repository.deleteById(id);
-        var medico = repository.getReferenceById(id);
-        medico.excluir();
+        service.excluir(id);
+
     }
 }

@@ -7,6 +7,7 @@ import br.com.api.repository.ConsultaRepository;
 import br.com.api.repository.MedicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,6 +32,7 @@ public class ConsultasService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional
     public void cadastrarConsulta(DadosPostConsulta dados) {
         Consulta consulta = dados.converter(medicoRepository );
         repository.save(consulta);
