@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,11 +35,13 @@ public class ConsultaController {
     }
 
     @PostMapping
+    @Transactional
     public void cadastrar(@RequestBody DtoPostConsulta dados) {
         servico.cadastrarConsulta(dados);
     }
 
     @PutMapping("{id}")
+    @Transactional
     public void atualizar(@RequestBody DtoPostConsulta dados, @PathVariable Long id) {
         servico.atualizarInfos(id, dados);
     }

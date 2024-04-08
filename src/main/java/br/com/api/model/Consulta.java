@@ -3,10 +3,7 @@ package br.com.api.model;
 import br.com.api.dtos.consulta.DtoAtualizacaoConsulta;
 import br.com.api.repository.MedicoRepository;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
@@ -14,6 +11,7 @@ import java.util.Date;
 @Table(name = "consultas")
 @Entity(name = "Consulta")
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
