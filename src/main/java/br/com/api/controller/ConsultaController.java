@@ -49,4 +49,12 @@ public class ConsultaController {
         Consulta consulta =  servico.atualizarInfos(id, dados);
         return ResponseEntity.ok(new DtoListConsultaMedico(consulta));
     }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity<?> excluir(@PathVariable Long id){
+        servico.excluir(id);
+        return ResponseEntity.ok().build();
+
+    }
 }

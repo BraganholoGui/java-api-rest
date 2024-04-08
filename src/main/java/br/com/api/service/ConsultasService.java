@@ -1,18 +1,14 @@
 package br.com.api.service;
 
-import br.com.api.dtos.consulta.DtoAtualizacaoConsulta;
-import br.com.api.dtos.consulta.DtoPostConsulta;
 import br.com.api.dtos.consulta.DtoListConsultaMedico;
+import br.com.api.dtos.consulta.DtoPostConsulta;
 import br.com.api.model.Consulta;
 import br.com.api.model.Medico;
 import br.com.api.repository.ConsultaRepository;
 import br.com.api.repository.MedicoRepository;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -60,4 +56,11 @@ public class ConsultasService {
             throw new RuntimeException("Paciente não encontrado para o ID fornecido: " + id);
         }
     }
+
+    public void excluir(Long id) {
+        //repository.deleteById(id);
+        var consulta = repository.getReferenceById(id);
+        consulta.excluir();
+    }
+
 }
