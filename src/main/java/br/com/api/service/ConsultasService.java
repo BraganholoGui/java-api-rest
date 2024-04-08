@@ -37,22 +37,25 @@ public class ConsultasService {
                 .collect(Collectors.toList());
     }
 
-    public void cadastrarConsulta(DtoPostConsulta dados) {
+    public Consulta cadastrarConsulta(DtoPostConsulta dados) {
         Consulta consulta = dados.converter(medicoRepository );
         repository.save(consulta);
+        return consulta;
     }
 
-    public void atualizarInfos(Long id, DtoPostConsulta dados) {
+    public Consulta atualizarInfos(Long id, DtoPostConsulta dados) {
         Optional<Consulta> optionalConsulta = repository.findById(id);
-
-        Consulta consultaAtualizada = dados.converter(medicoRepository );
 
         if (optionalConsulta.isPresent() && optionalConsulta.get() instanceof Consulta) {
             Consulta consultaExistente = (Consulta) optionalConsulta.get();
             Medico medico = medicoRepository.findByid(dados.medico_id());
-            consultaExistente.setData_consulta(new Date());
+            if(medico == null){
+                throw new RuntimeException("Medico não encontrado para o ID fornecido: " + id);
+            }
+            consultaExistente.setData_consulta(dados.data_consulta());
             consultaExistente.setMedico(medico);
             repository.save(consultaExistente);
+            return consultaExistente;
         } else {
             throw new RuntimeException("Paciente não encontrado para o ID fornecido: " + id);
         }
