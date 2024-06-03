@@ -1,4 +1,4 @@
-package br.com.api.dtos.consulta;
+package br.com.api.model.dtos.consulta;
 
 import br.com.api.model.Consulta;
 

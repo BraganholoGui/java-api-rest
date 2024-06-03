@@ -1,4 +1,4 @@
-package br.com.api.validations;
+package br.com.api.model.validations;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;

@@ -1,4 +1,4 @@
-package br.com.api.enums;
+package br.com.api.model.enums;
 
 public enum Especialidade {
 

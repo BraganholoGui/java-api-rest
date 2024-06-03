@@ -1,10 +1,7 @@
 package br.com.api.model;
 
-import br.com.api.dtos.consulta.DtoAtualizacaoConsulta;
-import br.com.api.repository.MedicoRepository;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
 

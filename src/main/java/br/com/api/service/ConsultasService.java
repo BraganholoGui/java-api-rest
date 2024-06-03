@@ -1,11 +1,11 @@
 package br.com.api.service;
 
-import br.com.api.dtos.consulta.DtoListConsultaMedico;
-import br.com.api.dtos.consulta.DtoPostConsulta;
+import br.com.api.model.dtos.consulta.DtoListConsultaMedico;
+import br.com.api.model.dtos.consulta.DtoPostConsulta;
 import br.com.api.model.Consulta;
 import br.com.api.model.Medico;
-import br.com.api.repository.ConsultaRepository;
-import br.com.api.repository.MedicoRepository;
+import br.com.api.model.repository.ConsultaRepository;
+import br.com.api.model.repository.MedicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

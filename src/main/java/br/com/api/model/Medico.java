@@ -1,13 +1,16 @@
 package br.com.api.model;
 
-import br.com.api.dtos.medico.DtoAtualizacaoMedico;
-import br.com.api.dtos.medico.DtoCadastroMedico;
-import br.com.api.enums.Especialidade;
+import br.com.api.model.dtos.consulta.DtoListConsulta;
+import br.com.api.model.dtos.medico.DtoAtualizacaoMedico;
+import br.com.api.model.dtos.medico.DtoCadastroMedico;
+import br.com.api.model.enums.Especialidade;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Table(name = "medicos")
 @Entity(name = "Medico")
@@ -33,6 +36,9 @@ public class Medico {
     private Endereco endereco;
 
     private Boolean ativo;
+
+    @OneToMany(mappedBy = "medico")
+    private List<Consulta> consultas;
 
     public Medico(DtoCadastroMedico dados) {
         this.ativo = true;

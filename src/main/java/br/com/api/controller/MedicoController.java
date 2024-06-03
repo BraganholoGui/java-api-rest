@@ -1,9 +1,9 @@
 package br.com.api.controller;
 
-import br.com.api.dtos.medico.DtoAtualizacaoMedico;
-import br.com.api.dtos.medico.DtoCadastroMedico;
-import br.com.api.dtos.medico.DtoListagemMedico;
-import br.com.api.repository.MedicoRepository;
+import br.com.api.model.dtos.medico.DtoAtualizacaoMedico;
+import br.com.api.model.dtos.medico.DtoCadastroMedico;
+import br.com.api.model.dtos.medico.DtoListagemMedico;
+import br.com.api.model.repository.MedicoRepository;
 import br.com.api.service.MedicoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +12,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("medicos")
@@ -28,9 +30,14 @@ public class MedicoController {
         service.cadastrar(dados);
     }
 
+//    @GetMapping
+//    public List<DtoListagemMedico> listar(@PageableDefault(size=10, sort={"nome"}) Pageable paginacao){
+//        return service.listarMedicos(paginacao);
+//        return repository.findAllByAtivoTrue(paginacao).map(DtoListagemMedico::new);
+//    }
     @GetMapping
-    public Page<DtoListagemMedico> listar(@PageableDefault(size=10, sort={"nome"}) Pageable paginacao){
-        return repository.findAllByAtivoTrue(paginacao).map(DtoListagemMedico::new);
+    public List<DtoListagemMedico> listar(){
+        return service.listarMedicos();
     }
 
     @PutMapping

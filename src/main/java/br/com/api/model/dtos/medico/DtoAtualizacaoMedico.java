@@ -1,7 +1,7 @@
-package br.com.api.dtos.medico;
+package br.com.api.model.dtos.medico;
 
+import br.com.api.model.dtos.endereco.DtoEndereco;
 import jakarta.validation.constraints.NotNull;
-import br.com.api.dtos.endereco.DtoEndereco;
 
 public record DtoAtualizacaoMedico(
         @NotNull

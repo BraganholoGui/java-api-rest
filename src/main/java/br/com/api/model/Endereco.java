@@ -1,6 +1,6 @@
 package br.com.api.model;
 
-import br.com.api.dtos.endereco.DtoEndereco;
+import br.com.api.model.dtos.endereco.DtoEndereco;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

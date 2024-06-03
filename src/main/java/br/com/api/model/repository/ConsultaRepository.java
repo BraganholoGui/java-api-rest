@@ -1,4 +1,4 @@
-package br.com.api.repository;
+package br.com.api.model.repository;
 
 import br.com.api.model.Consulta;
 import org.springframework.data.domain.Page;

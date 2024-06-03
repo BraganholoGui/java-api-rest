@@ -1,18 +1,38 @@
 package br.com.api.service;
 
-import br.com.api.dtos.medico.DtoAtualizacaoMedico;
-import br.com.api.dtos.medico.DtoCadastroMedico;
+import br.com.api.model.dtos.consulta.DtoListConsulta;
+import br.com.api.model.dtos.medico.DtoAtualizacaoMedico;
+import br.com.api.model.dtos.medico.DtoCadastroMedico;
 import br.com.api.model.Medico;
-import br.com.api.repository.MedicoRepository;
+import br.com.api.model.dtos.medico.DtoListagemMedico;
+import br.com.api.model.repository.MedicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class MedicoService {
 
     @Autowired
     private MedicoRepository repository;
+
+    public List<DtoListagemMedico> listarMedicos() {
+        List<Medico> medicos = repository.findAllByAtivoTrue();
+        return medicos.stream()
+                .map(medico -> new DtoListagemMedico(
+                        medico.getId(),
+                        medico.getNome(),
+                        medico.getEmail(),
+                        medico.getCrm(),
+                        medico.getEspecialidade(),
+                        medico.getConsultas().stream().map(DtoListConsulta::new).collect(Collectors.toList())
+                ))
+                .collect(Collectors.toList());
+    }
 
     @Transactional
 

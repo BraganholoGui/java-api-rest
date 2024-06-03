@@ -1,4 +1,4 @@
-package br.com.api.dtos.endereco;
+package br.com.api.model.dtos.endereco;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;

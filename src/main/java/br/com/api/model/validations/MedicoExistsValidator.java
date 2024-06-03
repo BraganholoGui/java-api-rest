@@ -1,6 +1,6 @@
-package br.com.api.validations;
+package br.com.api.model.validations;
 
-import br.com.api.repository.MedicoRepository;
+import br.com.api.model.repository.MedicoRepository;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 

@@ -1,6 +1,6 @@
-package br.com.api.dtos.consulta;
+package br.com.api.model.dtos.consulta;
 
-import br.com.api.validations.MedicoExists;
+import br.com.api.model.validations.MedicoExists;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 
