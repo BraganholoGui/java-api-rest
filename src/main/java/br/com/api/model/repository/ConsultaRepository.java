@@ -11,6 +11,8 @@ import java.util.List;
 public interface ConsultaRepository extends JpaRepository<Consulta, Long> {
     Page<Consulta> findAllByAtivoTrue(Pageable paginacao);
 
+    List<Consulta> findByMedicoIdAndAtivoTrue(Long medicoId);
+
     @Query("SELECT c FROM Consulta c JOIN FETCH c.medico")
     List<Consulta> findAllWithMedico();
 
