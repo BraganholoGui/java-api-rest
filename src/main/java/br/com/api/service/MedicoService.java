@@ -38,17 +38,26 @@ public class MedicoService {
                 .collect(Collectors.toList());
     }
 
-    @Transactional
 
-    public void cadastrar(DtoCadastroMedico dados) {
-        repository.save(new Medico(dados));
+    public Medico cadastrar(DtoCadastroMedico dados) {
+        Medico newMedico = new Medico(dados);
+        repository.save(newMedico);
+        return newMedico;
 
     }
-    @Transactional
-
-    public void atualizar(DtoAtualizacaoMedico dados) {
-        var medico = repository.getReferenceById(dados.id());
-        medico.atualizarInfos(dados);
+    public Medico atualizar(Long id, DtoAtualizacaoMedico dados) {
+        Medico medico = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Médico não encontrado com o ID: " + id));
+        if (dados.nome() != null) {
+            medico.setNome(dados.nome());
+        }
+        if (dados.telefone() != null) {
+            medico.setTelefone(dados.telefone());
+        }
+        if (dados.endereco() != null) {
+            medico.getEndereco().atualizarInfos(dados.endereco());
+        }
+        return repository.save(medico);
     }
 
 //    public void excluir(Long id) {

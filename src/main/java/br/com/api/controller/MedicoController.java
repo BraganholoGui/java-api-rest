@@ -1,5 +1,6 @@
 package br.com.api.controller;
 
+import br.com.api.model.Medico;
 import br.com.api.model.dtos.medico.DtoAtualizacaoMedico;
 import br.com.api.model.dtos.medico.DtoCadastroMedico;
 import br.com.api.model.dtos.medico.DtoListagemMedico;
@@ -10,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,8 +29,8 @@ public class MedicoController {
     private MedicoService service;
 
     @PostMapping
-    public void cadastrar(@RequestBody @Valid DtoCadastroMedico dados) {
-        service.cadastrar(dados);
+    public Medico cadastrar(@RequestBody @Valid DtoCadastroMedico dados) {
+        return service.cadastrar(dados);
     }
 
 //    @GetMapping
@@ -36,18 +39,18 @@ public class MedicoController {
 //        return repository.findAllByAtivoTrue(paginacao).map(DtoListagemMedico::new);
 //    }
     @GetMapping
-    public List<DtoListagemMedico> listar(){
-        return service.listarMedicos();
+    public ResponseEntity<List<DtoListagemMedico>> listar(){
+        List<DtoListagemMedico> result = service.listarMedicos();
+        return ResponseEntity.ok(result);
     }
 
-    @PutMapping
-    public void atualizar(@RequestBody @Valid DtoAtualizacaoMedico dados) {
-        service.atualizar(dados);
+    @PutMapping("/{id}")
+    public Medico atualizar(@PathVariable Long id, @RequestBody @Valid DtoAtualizacaoMedico dados) {
+        return service.atualizar(id, dados);
 
     }
 
     @DeleteMapping("/{id}")
-    @Transactional
     public void excluir(@PathVariable Long id){
         service.excluir(id);
 
